@@ -1,70 +1,55 @@
-from enum import Enum
 import urllib
 
 
-class Emp(Enum):
+class Emp(object):
     """Enum for employment type query param, default to all types"""
-    FULL_TIME = 'jtft,jtfp'
-    PART_TIME = 'jtpt,jtfp'
-    CONTRACT = 'jtct'
-    CONTRACT_TO_HIRE = 'jtch'
-    INTERN = 'jtin'
-    SEASONAL = 'jtse'
+    ANY = dict({'label': 'any', 'value': None})
+    FULL_TIME = dict({'label': 'full time', 'value': 'jtft,jtfp'})
+    PART_TIME = dict({'label': 'part time', 'value': 'jtpt,jtfp'})
+    CONTRACT = dict({'label': 'contract', 'value': 'jtct'})
+    CONTRACT_TO_HIRE = dict({'label': 'contract to hire', 'value': 'jtch'})
+    INTERN = dict({'label': 'intern', 'value': 'jtin'})
+    SEASONAL = dict({'label': 'seasonal', 'value': 'jtse'})
 
-    def __str__(self):
-        if self.value == 'jtft,jtfp':
-            return 'full time'
-        if self.value == 'jtpt,jtfp':
-            return 'part time'
-        if self.value == 'jtct':
-            return 'contract'
-        if self.value == 'jtch':
-            return 'contract to hire'
-        if self.value == 'jtin':
-            return 'intern'
-        if self.value == 'jtse':
-            return 'seasonal'
-
-    def __eq__(self, y):
-        return self.value == y.value
-
-    __repr__ = __str__
-
-    @staticmethod
-    def append():
-        print 'None'
+    @classmethod
+    def append(cls):
         return None
 
-    @staticmethod
-    def cmd_append():
+    @classmethod
+    def cmd_append(cls):
         repeat = 'y'
-        query_set = []
+        query_set = list()
         while repeat == 'y':
             choice = raw_input(
-                '*****\nSearch for what type of employment?\n\n1 - {}\n2 - {}\n3 - {}\n4 - {}\n5 - {}\n6 - {}\n\n'
-                    .format(Emp.FULL_TIME, Emp.PART_TIME, Emp.CONTRACT, Emp.CONTRACT_TO_HIRE,
-                            Emp.INTERN, Emp.SEASONAL))
+                '*****\nSearch for what type of employment?\n\n1 - {}\n2 - {}\n3 - {}\n4 - {}\n5 - {}\n6 - {}\n7 - {}\n\n'
+                    .format(cls.ANY.get('label'), cls.FULL_TIME.get('label'), cls.PART_TIME.get('label'),
+                            cls.CONTRACT.get('label'), cls.CONTRACT_TO_HIRE.get('label'), cls.INTERN.get('label'),
+                            cls.SEASONAL.get('label')))
             if choice == '1':
-                query_set.append(Emp.FULL_TIME)
+                del query_set[:]
+                query_set.append(cls.ANY.get('value'))
+                break
             elif choice == '2':
-                query_set.append(Emp.PART_TIME)
+                query_set.append(cls.FULL_TIME.get('value'))
             elif choice == '3':
-                query_set.append(Emp.CONTRACT)
+                query_set.append(cls.PART_TIME.get('value'))
             elif choice == '4':
-                query_set.append(Emp.CONTRACT_TO_HIRE)
+                query_set.append(cls.CONTRACT.get('value'))
             elif choice == '5':
-                query_set.append(Emp.INTERN)
+                query_set.append(cls.CONTRACT_TO_HIRE.get('value'))
             elif choice == '6':
-                query_set.append(Emp.SEASONAL)
+                query_set.append(cls.INTERN.get('value'))
+            elif choice == '7':
+                query_set.append(cls.SEASONAL.get('value'))
             else:
                 print '\nNot an option'
             repeat = raw_input('\nAdd more employment types to search? (y/n)\n')
         return query_set
 
-    @staticmethod
-    def get_formatted():
+    @classmethod
+    def get_formatted(cls):
         unformatted = []
-        base = Emp.cmd_append()
+        base = cls.cmd_append()
         for query in base:
-            unformatted.append(query.value)
+            unformatted.append(query)
         return "emp=" + urllib.quote_plus(",".join(map(str, list(set(unformatted)))))
