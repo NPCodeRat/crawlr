@@ -1,13 +1,14 @@
-from proxy.urlBuilder import UrlBuilder
+from cb.urlBuilder import UrlBuilder
 from model.posted import Posted
 
-# x = UrlBuilder(21212, 'search')
-# print x.zip
+x = UrlBuilder('55555', 'test')
+print x.build_url()
+# print x.zipcode
 # print x.search
-# print x.emp
-# print x.pay
+# print x.params
+# x.build_url()
 
-Posted.cmd_append()
+# Posted.cmd_append()
 
 # urlStr = "http://www.careerbuilder.com/jobs-in-21212?cat1=JN008&page_number=1&radius=5"
 # print "Querying: " + urlStr

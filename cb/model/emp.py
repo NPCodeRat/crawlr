@@ -51,5 +51,9 @@ class Emp(object):
         unformatted = []
         base = cls.cmd_append()
         for query in base:
-            unformatted.append(query)
-        return "emp=" + urllib.quote_plus(",".join(map(str, list(set(unformatted)))))
+            if query:
+                unformatted.append(query)
+        if len(unformatted) != 0:
+            return "emp=" + urllib.quote_plus(",".join(map(str, list(set(unformatted)))))
+        else:
+            return None
