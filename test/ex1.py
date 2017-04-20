@@ -3,7 +3,6 @@ from proxy.cbReq import CBReq
 from scraper.cb.pageObjects.postTime import PostTime
 
 req = CBReq.start()
-print len(PostTime.pull_times(req))
 
 # x = UrlBuilder('55555', 'test')
 # print x.build_url()
