@@ -1,7 +1,12 @@
 from urlBuilder import UrlBuilder
+from proxy.cbReq import CBReq
+from scraper.cb.pageObjects.postTime import PostTime
 
-x = UrlBuilder('55555', 'test')
-print x.build_url()
+req = CBReq.start()
+print len(PostTime.pull_times(req))
+
+# x = UrlBuilder('55555', 'test')
+# print x.build_url()
 # print x.zipcode
 # print x.search
 # print x.params
