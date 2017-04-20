@@ -37,9 +37,9 @@ class UrlBuilder(object):
 
     def build_url(self):
         if not self.has_filters():
-            return self.base + self.build_path()
+            return '{}{}?cat1=JN008'.format(self.base, self.build_path())
         else:
-            return self.base + self.build_path() + self.format_filters()
+            return '{}{}{}&cat1=JN008'.format(self.base, self.build_path(), self.format_filters())
 
     def build_path(self):
         if not self.search or not self.search.split():
@@ -58,4 +58,4 @@ class UrlBuilder(object):
         for param in self.params:
             if param is not None:
                 base += param + '&'
-        return base.rstrip('&')
+        return base
