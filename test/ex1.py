@@ -1,5 +1,4 @@
-from cb.urlBuilder import UrlBuilder
-from model.posted import Posted
+from urlBuilder import UrlBuilder
 
 x = UrlBuilder('55555', 'test')
 print x.build_url()
