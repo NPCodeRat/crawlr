@@ -1,8 +1,17 @@
 from urlBuilder import UrlBuilder
 from proxy.cbReq import CBReq
+import os.path
+import csv
 from scraper.cb.pageObjects.postTime import PostTime
 
-req = CBReq.start()
+
+# if os.path.exists('../data/test.csv'):
+#     os.remove('../data/test.csv')
+# data = open('../data/test.csv', 'w')
+# write = csv.writer(data, quoting=csv.QUOTE_ALL)
+# write.writerow()
+
+test = CBReq.start()
 
 # x = UrlBuilder('55555', 'test')
 # print x.build_url()
