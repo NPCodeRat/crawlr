@@ -6,9 +6,13 @@ class Company(object):
         companies = []
         parents = soup.findAll('div', 'row job-information')
         for parent in parents:
-            temp = parent.find('div', 'columns large-2 medium-3 small-12').find('h4')
-            if temp.a:
-                companies.append(temp.find('a').contents[0].strip())
+            try:
+                temp = parent.find('div', 'columns large-2 medium-3 small-12').find('h4')
+            except AttributeError:
+                companies.append(None)
             else:
-                companies.append(temp.contents[0].strip())
+                if temp.a:
+                    companies.append(temp.find('a').contents[0].strip())
+                else:
+                    companies.append(temp.contents[0].strip())
         return companies
