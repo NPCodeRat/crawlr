@@ -1,3 +1,4 @@
+from scraper.processing.csvUtil import CSVUtil
 from urlBuilder import UrlBuilder
 from proxy.cbReq import CBReq
 import os.path
@@ -11,7 +12,9 @@ from scraper.cb.pageObjects.postTime import PostTime
 # write = csv.writer(data, quoting=csv.QUOTE_ALL)
 # write.writerow()
 
-test = CBReq.start()
+x = CBReq.start()
+# print SelfRef.get()
+CSVUtil.build(x)
 
 # x = UrlBuilder('55555', 'test')
 # print x.build_url()

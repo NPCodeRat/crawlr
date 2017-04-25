@@ -26,8 +26,9 @@ class AggregateData(object):
         for lst in [description, time, type, pay, distance, company, address]:
             if len(lst) != length:
                 raise ArithmeticError('Inaccurate data: mismatched indices')
-        processed_data = []
+        processed_data = [['Job Title', 'Job Description', 'Time Posted', 'Full / Part', 'Pay', 'Distance',
+                          'Company', 'Location']]
         for x in range(0, len(title)):
             temp = [title[x], description[x], time[x], type[x], pay[x], distance[x], company[x], address[x]]
             processed_data.append(temp)
-        print processed_data
+        return processed_data

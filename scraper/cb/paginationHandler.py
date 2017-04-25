@@ -17,11 +17,12 @@ class PaginationHandler(object):
         else:
             soups.append(BeautifulSoup(first_page, 'html.parser'))
             cls.subsequent_pages(url, soups)
-            print 'Query complete'
+        print 'Query complete'
         return soups
 
     @staticmethod
     def subsequent_pages(url, soups):
+        print 'Checking for further pages of results...'
         counter = 2
         has_next = True
         # TODO remove count limiter!
@@ -31,6 +32,7 @@ class PaginationHandler(object):
             except urllib2.HTTPError:
                 has_next = False
             else:
+                print 'Querying result page {}'.format(counter)
                 next_soup = BeautifulSoup(next_page, 'html.parser')
                 counter += 1
                 soups.append(next_soup)
