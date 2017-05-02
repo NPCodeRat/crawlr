@@ -2,6 +2,7 @@ import glob
 import os.path
 import unicodecsv
 import datetime
+import definitions
 
 
 class CSVUtil(object):
@@ -9,14 +10,15 @@ class CSVUtil(object):
 
     @classmethod
     def build(cls, aggregate):
-        data_path = '../data/'
+        data_path = os.path.join(definitions.ROOT_DIR, 'data')
         filename = datetime.datetime.now().strftime('%G%m%dT%H%M%S.csv')
-        files = glob.glob('../data/*')
+        files = os.path.join(data_path, '*')
+        files = glob.glob(files)
         print 'Emptying previous search results...'
         for file in files:
             os.remove(file)
         print 'Writing search results to CSV...'
-        output = open('{}{}'.format(data_path, filename), 'wb')
+        output = open(os.path.join(data_path, filename), 'wb')
         writer = unicodecsv.writer(output, delimiter=',', encoding='utf-8')
         for row in aggregate:
             writer.writerow(row)

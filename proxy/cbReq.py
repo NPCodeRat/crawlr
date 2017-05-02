@@ -1,7 +1,6 @@
 from scraper.processing.aggregateData import AggregateData
-from urlBuilder import UrlBuilder
-
 from scraper.cb.paginationHandler import PaginationHandler
+from cb.urlBuilder import UrlBuilder
 
 
 class CBReq(object):

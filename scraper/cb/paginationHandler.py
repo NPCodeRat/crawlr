@@ -1,5 +1,4 @@
 import urllib2
-
 from bs4 import BeautifulSoup
 
 
@@ -26,7 +25,7 @@ class PaginationHandler(object):
         counter = 2
         has_next = True
         # TODO remove count limiter!
-        while has_next is True and counter <= 3:
+        while has_next is True:
             try:
                 next_page = urllib2.urlopen('{}&page_number={}'.format(url, counter))
             except urllib2.HTTPError:
