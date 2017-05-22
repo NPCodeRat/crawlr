@@ -16,18 +16,13 @@ class Posted(object):
                 .format(cls.HOURS_24.get('label'), cls.DAYS_3.get('label'), cls.DAYS_7.get('label'),
                         cls.DAYS_30.get('label')))
         if choice == '1':
-            print cls.HOURS_24.get('value')
             return cls.HOURS_24.get('value')
         elif choice == '2':
-            print cls.DAYS_3.get('value')
             return cls.DAYS_3.get('value')
         elif choice == '3':
-            print cls.DAYS_7.get('value')
             return cls.DAYS_7.get('value')
         elif choice == '4':
-            print cls.DAYS_30.get('value')
             return cls.DAYS_30.get('value')
         else:
             print '\nNot an option.  Defaulting to 30 miles.\n'
-            print cls.DAYS_30.get('value')
             return cls.DAYS_30.get('value')
