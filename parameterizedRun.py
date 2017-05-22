@@ -1,4 +1,7 @@
 from proxy.cbReq import CBReq
+from proxy.monsterReq import MonsterReq
 from scraper.processing.csvUtil import CSVUtil
 
-CSVUtil.build(CBReq.start())
+cb = CBReq.start()
+monster = MonsterReq.start()
+CSVUtil.build(cb, monster)

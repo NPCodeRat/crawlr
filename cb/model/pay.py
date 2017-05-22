@@ -20,25 +20,18 @@ class Pay(object):
                         cls.OVER_60.get('label'), cls.OVER_80.get('label'), cls.OVER_100.get('label'),
                         cls.OVER_120.get('label')))
         if choice == '1':
-            print cls.ANY.get('label')
             return cls.ANY.get('value')
         elif choice == '2':
-            print cls.OVER_20.get('label')
             return cls.OVER_20.get('value')
         elif choice == '3':
-            print cls.OVER_40.get('label')
             return cls.OVER_40.get('value')
         elif choice == '4':
-            print cls.OVER_60.get('label')
             return cls.OVER_60.get('value')
         elif choice == '5':
-            print cls.OVER_80.get('label')
             return cls.OVER_80.get('value')
         elif choice == '6':
-            print cls.OVER_100.get('label')
             return cls.OVER_100.get('value')
         elif choice == '7':
-            print cls.OVER_120.get('label')
             return cls.OVER_120.get('value')
         else:
             print '\nNot an option.  Defaulting to any pay.\n'
