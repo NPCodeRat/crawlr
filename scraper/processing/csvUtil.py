@@ -9,17 +9,22 @@ class CSVUtil(object):
     """Push formatted data to CSV"""
 
     @classmethod
-    def build(cls, aggregate):
+    def build(cls, cb_aggregate, monster_aggregate):
         data_path = os.path.join(definitions.ROOT_DIR, 'data')
-        filename = datetime.datetime.now().strftime('%G%m%dT%H%M%S.csv')
+        cb_filename = datetime.datetime.now().strftime('CB_%G%m%dT%H%M%S.csv')
+        monster_filename = datetime.datetime.now().strftime('MONSTER_%G%m%dT%H%M%S.csv')
         files = os.path.join(data_path, '*')
         files = glob.glob(files)
         print 'Emptying previous search results...'
         for file in files:
             os.remove(file)
         print 'Writing search results to CSV...'
-        output = open(os.path.join(data_path, filename), 'wb')
+        output = open(os.path.join(data_path, cb_filename), 'wb')
         writer = unicodecsv.writer(output, delimiter=',', encoding='utf-8')
-        for row in aggregate:
+        for row in cb_aggregate:
             writer.writerow(row)
-        print 'CSV complete.  Check crawlr/data for output.'
+        output = open(os.path.join(data_path, monster_filename), 'wb')
+        writer = unicodecsv.writer(output, delimiter=',', encoding='utf-8')
+        for row in monster_aggregate:
+            writer.writerow(row)
+        print 'CSV(s) complete.  Check crawlr/data for output.'

@@ -3,17 +3,16 @@ from bs4 import BeautifulSoup
 
 
 class PaginationHandler(object):
-    """Manages all pagination requests for CB"""
+    """Manages all pagination requests for Monster"""
 
     @classmethod
     def paginate(cls, url):
         soups = []
-        query_name = 'Career Builder' if url.find('career') else 'Monster'
-        print 'Querying {}...'.format(query_name)
+        print 'Querying Monster...'
         try:
             first_page = urllib2.urlopen(url)
         except urllib2.HTTPError:
-            print 'No results.  Try again with fewer search parameters.'
+            print 'No results.  Try again with a different zipcode.'
         else:
             soups.append(BeautifulSoup(first_page, 'html.parser'))
             cls.subsequent_pages(url, soups)
@@ -27,7 +26,7 @@ class PaginationHandler(object):
         has_next = True
         while has_next is True:
             try:
-                next_page = urllib2.urlopen('{}&page_number={}'.format(url, counter))
+                next_page = urllib2.urlopen('{}&page={}'.format(url, counter))
             except urllib2.HTTPError:
                 has_next = False
             else:
