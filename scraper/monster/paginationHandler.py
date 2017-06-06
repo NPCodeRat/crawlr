@@ -7,6 +7,7 @@ class PaginationHandler(object):
 
     @classmethod
     def paginate(cls, url):
+        """Execute initial request and pull first soup, pass to subsequent_pages for pagination"""
         soups = []
         print 'Querying Monster...'
         try:
@@ -21,6 +22,7 @@ class PaginationHandler(object):
 
     @staticmethod
     def subsequent_pages(url, soups):
+        """Determine whether request has subsequent pages of results, execute requests until pagination is exhausted"""
         print 'Checking for further pages of results...'
         counter = 2
         has_next = True

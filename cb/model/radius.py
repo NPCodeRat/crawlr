@@ -7,10 +7,12 @@ class Radius(object):
 
     @classmethod
     def append(cls):
+        """Skip user input, default to 30 miles"""
         return cls.MILES_30.get('value')
 
     @classmethod
     def cmd_append(cls):
+        """Prompt user for search radius input"""
         choice = raw_input(
             '*****\nSearch surrounding...\n\n1 - {}\n2 - {}\n3 - {}\n4 - {}\n\n'
                 .format(cls.MILES_5.get('label'), cls.MILES_10.get('label'), cls.MILES_30.get('label'),

@@ -7,9 +7,9 @@ class PaginationHandler(object):
 
     @classmethod
     def paginate(cls, url):
+        """Execute initial request and pull first soup, pass to subsequent_pages for pagination"""
         soups = []
-        query_name = 'Career Builder' if url.find('career') else 'Monster'
-        print 'Querying {}...'.format(query_name)
+        print 'Querying Career Builder...'
         try:
             first_page = urllib2.urlopen(url)
         except urllib2.HTTPError:
@@ -22,6 +22,7 @@ class PaginationHandler(object):
 
     @staticmethod
     def subsequent_pages(url, soups):
+        """Determine whether request has subsequent pages of results, execute requests until pagination is exhausted"""
         print 'Checking for further pages of results...'
         counter = 2
         has_next = True

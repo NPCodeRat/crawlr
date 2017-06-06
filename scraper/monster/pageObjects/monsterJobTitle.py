@@ -3,6 +3,7 @@ class MonsterJobTitle(object):
 
     @classmethod
     def pull_titles(cls, soup):
+        """Find all job title data in provided soup"""
         titles = []
         parents = soup.findAll('div', 'jobTitle')
         for parent in parents:

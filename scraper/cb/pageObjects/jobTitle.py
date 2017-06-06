@@ -4,6 +4,7 @@ class JobTitle(object):
 
     @classmethod
     def pull_titles(cls, soup):
+        """Find all position title data in provided soup"""
         titles = []
         rows = soup.findAll(cls.PARENT.get('tag'), cls.PARENT.get('class'))
         for row in rows:

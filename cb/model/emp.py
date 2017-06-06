@@ -13,12 +13,15 @@ class Emp(object):
 
     @classmethod
     def append(cls):
+        """Skip user input, default to all types"""
         return None
 
     @classmethod
     def cmd_append(cls):
+        """Prompt user for employment type input"""
         repeat = 'y'
         query_set = list()
+        # Allow for multiple employment type choices per search
         while repeat == 'y':
             choice = raw_input(
                 '*****\nSearch for what type of employment?\n\n1 - {}\n2 - {}\n3 - {}\n4 - {}\n5 - {}\n6 - {}\n7 - {}\n\n'
@@ -48,12 +51,14 @@ class Emp(object):
 
     @classmethod
     def get_formatted(cls):
+        """Restructure user choices as a string to be used in request URL"""
         unformatted = []
         base = cls.cmd_append()
         for query in base:
             if query:
                 unformatted.append(query)
         if len(unformatted) != 0:
+            # CB API expects comma separated list of employment types
             return "emp=" + urllib.quote_plus(",".join(map(str, list(set(unformatted)))))
         else:
             return None
