@@ -7,10 +7,12 @@ class Posted(object):
 
     @classmethod
     def append(cls):
+        """Skip user input, default to 30 days"""
         return cls.DAYS_30.get('value')
 
     @classmethod
     def cmd_append(cls):
+        """Prompt user for post-date input"""
         choice = raw_input(
             '*****\nSearch the past...\n\n1 - {}\n2 - {}\n3 - {}\n4 - {}\n\n'
                 .format(cls.HOURS_24.get('label'), cls.DAYS_3.get('label'), cls.DAYS_7.get('label'),
