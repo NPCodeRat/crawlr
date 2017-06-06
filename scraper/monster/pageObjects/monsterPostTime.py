@@ -3,6 +3,7 @@ class MonsterPostTime(object):
 
     @classmethod
     def pull_times(cls, soup):
+        """Find all time-since-posting data in provided soup"""
         times = []
         parents = soup.findAll('time')
         for parent in parents:

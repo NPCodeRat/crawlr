@@ -10,10 +10,12 @@ class Pay(object):
 
     @classmethod
     def append(cls):
+        """Skip user input, default to any type"""
         return cls.ANY.get('value')
 
     @classmethod
     def cmd_append(cls):
+        """Prompt user for pay rate input"""
         choice = raw_input(
             '*****\nSearch for pay...\n\n1 - {}\n2 - {}\n3 - {}\n4 - {}\n5 - {}\n6 - {}\n7 - {}\n\n'
                 .format(cls.ANY.get('label'), cls.OVER_20.get('label'), cls.OVER_40.get('label'),

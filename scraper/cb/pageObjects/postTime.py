@@ -4,6 +4,7 @@ class PostTime(object):
 
     @classmethod
     def pull_times(cls, soup):
+        """Find all elapsed-time-since-posting data in provided soup"""
         times = []
         rows = soup.findAll(cls.PARENT.get('tag'), cls.PARENT.get('class'))
         for row in rows:

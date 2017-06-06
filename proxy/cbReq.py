@@ -8,6 +8,7 @@ class CBReq(object):
 
     @classmethod
     def start(cls):
+        """Prompt user for input, build URL, execute paginated requests, and pass to AggregateData"""
         zipcode = raw_input('Scraping!  Query CareerBuilder.com for what zipcode?\n')
         search = raw_input('\nEnter any job description keywords to search separated by spaces:\n')
         x = UrlBuilder(zipcode, search)

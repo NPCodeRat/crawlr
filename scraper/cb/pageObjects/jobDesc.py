@@ -3,6 +3,7 @@ class JobDesc(object):
 
     @classmethod
     def pull_descriptions(cls, soup):
+        """Find all job description data in provided soup"""
         descriptions = []
         rows = soup.findAll('div', 'job-description show-for-medium-up')
         for row in rows:

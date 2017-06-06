@@ -12,10 +12,11 @@ from scraper.monster.pageObjects.monsterPostTime import MonsterPostTime
 
 
 class AggregateData(object):
-    """Pull all data from beautiful soups, format for CSV processing"""
+    """Pull all data from beautifulsoups, format for CSV processing"""
 
     @classmethod
     def pull_all(cls, soups):
+        """Apply all page object scrapers to all CB soups, reorganize for CSV output"""
         title, description, time, type, pay, distance, company, address = [], [], [], [], [], [], [], []
         print 'Processing CareerBuilder data...'
         for soup in soups:
@@ -27,13 +28,17 @@ class AggregateData(object):
             distance += Distance.pull_distance(soup)
             company += Company.pull_companies(soup)
             address += Address.pull_addresses(soup)
+        # Using title as a reference length
         length = len(title)
         for lst in [description, time, type, pay, distance, company, address]:
             if len(lst) != length:
+                # Check for different array lengths that might offset final result collection
                 raise ArithmeticError('Inaccurate data: mismatched indices')
+        # Add column headers
         processed_data = [['Job Title', 'Job Description', 'Time Posted', 'Full / Part', 'Pay', 'Distance',
                           'Company', 'Location']]
         for x in range(0, len(title)):
+            # Match corresponding values to posting records via nested array
             temp = [title[x], description[x], time[x], type[x], pay[x], distance[x], company[x], address[x]]
             processed_data.append(temp)
         print 'CareerBuilder data processed'
@@ -41,6 +46,7 @@ class AggregateData(object):
 
     @classmethod
     def pull_monster(cls, soups):
+        """Apply all page object scrapers to all Monster soups, reorganize for CSV output"""
         title, company, location, time = [], [], [], []
         print 'Processing Monster data...'
         for soup in soups:
@@ -48,12 +54,16 @@ class AggregateData(object):
             company += MonsterCompany.pull_companies(soup)
             location += MonsterAddress.pull_addresses(soup)
             time += MonsterPostTime.pull_times(soup)
+        # Using title as a reference length
         length = len(title)
         for lst in [company, location, time]:
             if len(lst) != length:
+                # Check for different array lengths that might offset final result collection
                 raise ArithmeticError('Inaccurate data: mismatched indices')
+        # Add column headers
         processed_data = [['Job Title', 'Company', 'Location', 'Time Posted']]
         for x in range(0, len(title)):
+            # Match corresponding values to posting records via nested array
             temp = [title[x], company[x], location[x], time[x]]
             processed_data.append(temp)
         print 'Monster data processed'

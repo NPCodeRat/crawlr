@@ -3,6 +3,7 @@ class MonsterCompany(object):
 
     @classmethod
     def pull_companies(cls, soup):
+        """Find all company name data in provided soup"""
         companies = []
         parents = soup.findAll('div', 'company')
         for parent in parents:
